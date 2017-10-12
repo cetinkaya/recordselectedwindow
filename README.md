@@ -5,20 +5,20 @@ The default duration for recording is 10 seconds and the default filename for th
 
 ## Usage
 
-To start recording a gif animation with filename `test1.gif`, we write
+To start recording a gif animation with filename `example1.gif`, we write
 
 ```
-$ ./recordselectedwindow test1.gif
+$ ./recordselectedwindow example1.gif
 ```
 
 The recording starts when we choose a window with the mouse. Since the duration is not specified, the animation in `test1.gif` is a recording of 10 seconds. 
 
-![Test recording 1](test1.gif)
+![Example animation 1](example1.gif)
 
 We can change the duration to 5 seconds by 
 
 ```
-$ ./recordselectedwindow -d 5 test2.gif
+$ ./recordselectedwindow -d 5 example2.gif
 ```
 
-![Test recording 2](test2.gif)
+![Example animation 2](example2.gif)
