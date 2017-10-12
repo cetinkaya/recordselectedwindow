@@ -38,9 +38,9 @@ end
 
 def get_xywh(window_id)
   regexs = [/Absolute\Wupper\-left\WX:\W+([0-9]+)/,
-          /Absolute\Wupper\-left\WY:\W+([0-9]+)/,
-          /Width:\W+([0-9]+)/,
-          /Height:\W+([0-9]+)/]
+           /Absolute\Wupper\-left\WY:\W+([0-9]+)/,
+           /Width:\W+([0-9]+)/,
+           /Height:\W+([0-9]+)/]
 
   info = `xwininfo -id #{window_id}`
   regexs.map do |regex|
