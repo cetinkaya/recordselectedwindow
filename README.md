@@ -1,5 +1,5 @@
 # recordselectedwindow
-recordselectedwindow creates animated gif files by recording windows that are selected with mouse. It is a simple wrapper around `byzanz-record` and it relies on the tools `xdotool` and `xwininfo` for X. 
+`recordselectedwindow` creates animated gif files by recording windows that are selected with mouse. It is a simple wrapper around `byzanz-record` and it relies on the tools `xdotool` and `xwininfo` for X. 
 
 The default duration for recording is 10 seconds and the default filename for the animation is `WindowRecording{Timestamp}.gif`.
 
