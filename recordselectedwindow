@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+
+# Ahmet Cetinkaya, 2017
+
+require "optparse"
+
+def get_options
+  default_filename = "WindowRecording#{Time.now.to_i}.gif"
+  options = {duration: 10, filename: default_filename}
+
+  optparse = OptionParser.new do |opts|
+    opts.banner = "recordselectedwindow creates a gif animation by"\
+                  "recording a window that you select with your mouse"\
+                  "for a duration of your choice.\n\n"\
+                  "Usage: recordwindow [options] [GIFFILENAME]\n\n"\
+                  "Options: "
+
+    opts.on("-d", "--duration DUR", "Record for DUR seconds (default: 10)") do |dur_str|
+      dur = dur_str.to_i
+      options[:duration] = dur if dur > 0
+    end
+
+    opts.on("-h", "--help", "Display help") do
+      puts opts
+      exit
+    end
+  end
+
+  optparse.parse!
+
+  options[:filename] = ARGV[0] if ARGV.length > 0
+  options
+end
+
+def selected_window_id
+  `xdotool selectwindow`.strip.to_i
+end
+
+def get_xywh(window_id)
+  regexs = [/Absolute\Wupper\-left\WX:\W+([0-9]+)/,
+          /Absolute\Wupper\-left\WY:\W+([0-9]+)/,
+          /Width:\W+([0-9]+)/,
+          /Height:\W+([0-9]+)/]
+
+  info = `xwininfo -id #{window_id}`
+  regexs.map do |regex|
+    info.scan(regex)[0][0].to_i
+  end
+end
+
+def run
+  options = get_options
+  xywh = get_xywh(selected_window_id)
+  d = options[:duration]
+
+  dxywh_str = ["-d", "-x", "-y", "-w", "-h"].zip([d] + xywh).map{|o|
+    "#{o[0]} #{o[1]}"
+  }.join(" ")
+
+  arg_str = "#{dxywh_str} #{options[:filename]}"
+  `byzanz-record #{arg_str}`
+end
+
+puts run
