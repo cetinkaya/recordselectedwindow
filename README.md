@@ -11,7 +11,7 @@ To start recording a gif animation with filename `example1.gif`, we write
 $ ./recordselectedwindow example1.gif
 ```
 
-The recording starts when we choose a window with the mouse. Since the duration is not specified, the animation in `test1.gif` is a recording of 10 seconds. 
+The recording starts when we choose a window with the mouse. Since the duration is not specified, the animation in `example1.gif` is a recording of 10 seconds. 
 
 ![Example animation 1](example1.gif)
 
